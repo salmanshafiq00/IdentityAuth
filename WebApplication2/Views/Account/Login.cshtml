@@ -1,0 +1,51 @@
+﻿@model LoginViewModel
+@{
+}
+<div style="margin:auto; margin-top: 200px; background-color: azure; width: 500px; padding: 15px">
+    <div>
+        <h2>Login:</h2>
+        <div asp-validation-summary="All"></div> 
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <label asp-for="Email" class="text-end form-label"></label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="text" asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <label asp-for="Password" class="text-end form-label"></label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="password" asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password"class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <label asp-for="RememberMe" class="text-end form-check-label"></label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="checkbox" asp-for="RememberMe" class="form-check-input" />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-3">
+                </div>
+
+                <div class="col-md-9">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

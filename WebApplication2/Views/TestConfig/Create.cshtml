@@ -1,0 +1,83 @@
+﻿@model IdentityAuth.Models.TestConfig
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TestConfig</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AdmissionReferenceId" class="control-label"></label>
+                <input asp-for="AdmissionReferenceId" class="form-control" />
+                <span asp-validation-for="AdmissionReferenceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchId" class="control-label"></label>
+                <input asp-for="BatchId" class="form-control" />
+                <span asp-validation-for="BatchId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SesionId" class="control-label"></label>
+                <input asp-for="SesionId" class="form-control" />
+                <span asp-validation-for="SesionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumGPA" class="control-label"></label>
+                <input asp-for="MinimumGPA" class="form-control" />
+                <span asp-validation-for="MinimumGPA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PassMark" class="control-label"></label>
+                <input asp-for="PassMark" class="form-control" />
+                <span asp-validation-for="PassMark" class="text-danger"></span>
+            </div>
+            @for (int i = 0; i < Model.TestConfigDetails.Count; i++)
+            {
+                var count = 0; 
+                <div class="form-group">
+                    <label asp-for="TestConfigDetails[i].SubjectId" class="control-label"></label>
+                    @*<input asp-for="TestConfigDetails[i].SubjectId" class="form-control" />*@
+                    <input type="checkbox" id="@count" class="form-check" />
+                    <select asp-for="TestConfigDetails[i].SubjectId" disabled>
+                        <option value="-1">Option</option>
+                        <option value="1">Math</option>
+                        <option value="2">Bangla</option>
+                        <option value="3">Finance</option>
+                    </select>
+                    <select asp-for="TestConfigDetails[i].ResultGradeId" disabled>
+                        <option value="-1">Option</option>
+                        <option value="1">A+</option>
+                        <option value="2">A</option>
+                        <option value="3">A-</option>
+                    </select>
+                    @*<input asp-for="TestConfigDetails[i].ResultGradeId" class="form-control" />*@
+                    <span asp-validation-for="PassMark" class="text-danger"></span>
+                </div>
+                count++;
+            }
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    $(document).ready(function(){
+        $("#chk0").removeAttr('disabled');
+        console.log($("#chk0").val());
+    })
+</script>

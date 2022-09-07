@@ -1,0 +1,61 @@
+﻿@model EditRoleViewModel
+@{
+}
+<div class="container bg-secondary p-4">
+    <form asp-action="EditRole" asp-controller="Administration" method="post">
+        <div asp-validation-summary="All"></div>
+
+        <div class="row form-group">
+            <div class="col-md-4">
+                <label asp-for="Id" class="form-label"></label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" asp-for="Id" disabled class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-4">
+                <label asp-for="RoleName" class="form-label"></label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-primary">Update Role</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="card mt-3">
+        <div class="card-header">
+            <h3>Users in this role!</h3>
+        </div>
+        <div class="card-body">
+            @if (Model.Users.Any())
+            {
+                foreach (var user in Model.Users)
+                {
+                    
+                 <h3 class="card-title">@user</h3>
+                }
+            }
+            else
+            {
+                <h3 class="card-title">User Not Found!</h3>
+            }
+        </div>
+        <div class="card-footer">
+            <a http="#" class="btn btn-success text-white" asp-action="EditUsersInRole" asp-controller="Administration" asp-route-roleId="@Model.Id" > Add or Edit </a>
+            <a class="btn btn-danger text-white" asp-action="EditRole" asp-controller="Administration">Delete</a>
+
+        </div>
+    </div>
+</div>
